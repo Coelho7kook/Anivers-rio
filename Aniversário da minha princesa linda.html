@@ -6,112 +6,123 @@
     <title>Feliz Aniversário, Isabela!</title>
     <style>
         body {
+            background-color: #1a1a1a;
+            color: #f0c2c2;
             font-family: 'Arial', sans-serif;
-            background-color: #f7e8e8;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            text-align: center;
         }
-        header {
-            background-color: #ffcccc;
-            padding: 20px;
-            border-bottom: 2px solid #ff9999;
+        h1 {
+            color: #ff007f;
         }
-        header h1 {
-            font-size: 3em;
-            margin: 0;
-            color: #ff6666;
-        }
-        .content {
-            padding: 20px;
-        }
-        .content p {
-            font-size: 1.2em;
-            margin: 20px 0;
-        }
-        .poem {
-            font-size: 1.4em;
-            margin: 30px 0;
-            color: #b30000;
-            font-style: italic;
-        }
-        .content img {
-            max-width: 100%;
-            height: auto;
+        button {
+            background-color: #1a1a1a;
+            border: none;
+            margin: 10px;
+            cursor: pointer;
             border-radius: 10px;
         }
-        .footer {
-            background-color: #ffcccc;
-            padding: 10px;
-            border-top: 2px solid #ff9999;
+        button img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
         }
-        .footer p {
-            margin: 0;
-            color: #ff6666;
-            font-weight: bold;
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            max-width: 600px;
+            text-align: center;
         }
-        .heart {
-            color: #ff6666;
-            font-size: 1.5em;
+        .poem {
+            margin: 20px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
         }
-        .hidden-video {
+        audio {
             display: none;
         }
     </style>
-</head>
-<body>
-    <header>
-        <h1>Feliz Aniversário, Isabela!</h1>
-    </header>
-    <div class="content">
-        <p>Isabela, você é a pessoa mais especial e incrível da minha vida. Feliz aniversário, meu amor virtual!</p>
-        <div class="poem">
-            <p>Na tela fria, o calor do seu olhar,</p>
-            <p>Uma presença etérea que me faz sonhar.</p>
-            <p>Num toque digital, sinto seu desejo,</p>
-            <p>Um amor virtual, mas cheio de ensejo.</p>
-            <p>Saudade ardente do que não posso ter,</p>
-            <p>Mas o desejo constante de te pertencer.</p>
-            <p>Neste aniversário, meu coração lhe entrego,</p>
-            <p>Em bits e bytes, meu amor, te navego.</p>
-        </div>
-        <img src="https://via.placeholder.com/500" alt="Imagem romântica">
-        <p>Espero que seu dia seja tão lindo quanto o seu sorriso e tão especial quanto você é para mim. Te amo!</p>
-        <img src="image.jpg" alt="Imagem romântica">
-        <p class="heart">❤</p>
-    </div>
-    <div class="footer">
-        <p>Com todo meu amor, [Seu Nome]</p>
-    </div>
-    <div id="player" class="hidden-video"></div>
-
     <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: 'TJ5XsyPOv0o',
-                playerVars: {
-                    'autoplay': 1,
-                    'loop': 1,
-                    'playlist': 'TJ5XsyPOv0o'
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
+        function showContent(id, audioId) {
+            var elements = document.getElementsByClassName('hidden');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = 'none';
+            }
+            document.getElementById(id).style.display = 'block';
+            
+            var audios = document.getElementsByTagName('audio');
+            for (var j = 0; j < audios.length; j++) {
+                audios[j].pause();
+                audios[j].currentTime = 0;
+            }
+            document.getElementById(audioId).play();
         }
     </script>
+</head>
+<body>
+    <h1>Feliz Aniversário, Isabela!</h1>
+    <p>Você é minha inspiração e meu desejo. Clique nos botões abaixo para descobrir algo especial.</p>
+    
+    <button onclick="showContent('frase1', 'audio1')">
+        <img src="imagem1.jpg" alt="Frase Romântica 1">
+    </button>
+    <button onclick="showContent('frase2', 'audio2')">
+        <img src="imagem2.jpg" alt="Frase Romântica 2">
+    </button>
+    <button onclick="showContent('poema1', 'audio3')">
+        <img src="imagem3.jpg" alt="Poema Sensual 1">
+    </button>
+    <button onclick="showContent('poema2', 'audio4')">
+        <img src="imagem4.jpg" alt="Poema Sensual 2">
+    </button>
+    <button onclick="showContent('poema3', 'audio5')">
+        <img src="imagem5.jpg" alt="Poema Sensual 3">
+    </button>
+    <button onclick="showContent('poema4', 'audio6')">
+        <img src="imagem6.jpg" alt="Poema Sensual 4">
+    </button>
+
+    <audio id="audio1" src="musica1.mp3"></audio>
+    <audio id="audio2" src="musica2.mp3"></audio>
+    <audio id="audio3" src="musica3.mp3"></audio>
+    <audio id="audio4" src="musica4.mp3"></audio>
+    <audio id="audio5" src="musica5.mp3"></audio>
+    <audio id="audio6" src="musica6.mp3"></audio>
+
+    <div id="frase1" class="hidden">
+        <p>"A cada dia que passa, meu amor por você só aumenta. Feliz aniversário, minha eterna paixão."</p>
+    </div>
+    <div id="frase2" class="hidden">
+        <p>"Seu sorriso ilumina meu mundo. Te amo mais do que palavras podem expressar. Feliz aniversário, meu amor."</p>
+    </div>
+    <div id="poema1" class="hidden poem">
+        <p>Te envolver em meus braços, sentir seu corpo se arrepiar,<br>
+        Beijar seu pescoço, ouvir seus suspiros, gemidos de prazer.<br>
+        O toque suave que faz sua pele estremecer,<br>
+        Nosso amor é intenso, um êxtase a cada amanhecer.</p>
+    </div>
+    <div id="poema2" class="hidden poem">
+        <p>Amarrarei suas mãos com delicadeza,<br>
+        Seus olhos vendados, sua respiração acelerada.<br>
+        Sentir seu corpo se contorcer, a expectativa no ar,<br>
+        Nossos desejos se encontram, puro prazer e sedução.</p>
+    </div>
+    <div id="poema3" class="hidden poem">
+        <p>Seu gemido suave me deixa em êxtase,<br>
+        O sabor da sua pele, um convite ao desejo.<br>
+        Beijos no pescoço, arrepios que causam prazer,<br>
+        Nosso amor é uma dança, uma sinfonia de gemidos.</p>
+    </div>
+    <div id="poema4" class="hidden poem">
+        <p>Te amarrar na cama, ver seu corpo se entregar,<br>
+        Seus suspiros e gemidos, um balé de emoção.<br>
+        Sentir cada arrepio, cada desejo realizado,<br>
+        Nosso amor é um jogo de prazer e paixão.</p>
+    </div>
 </body>
-</html>
+    </html>
